@@ -25,7 +25,7 @@ require __DIR__.'/core/vendor/autoload.php';
 
 /*
 |--------------------------------------------------------------------------
-| Turn On The Lights
+| Turn On The Lights. 
 |--------------------------------------------------------------------------
 |
 | We need to illuminate PHP development, so let us turn on the lights.
