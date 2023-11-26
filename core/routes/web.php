@@ -1,8 +1,4 @@
 <?php
-
-
-
-
 Route::get('/', 'FrontendController@home')->name('homePage');
 
 Route::get('/latest-news/{id}/{slug}', 'FrontendController@singleBlog')->name('single.blog');
@@ -15,13 +11,6 @@ Route::post('/contact', 'FrontendController@ContactSubmit')->name('ContactSubmit
 Route::post('/subscribe', 'FrontendController@subscribePost')->name('subscribePost');
 
 Route::get('/change-lang/{lang}', 'FrontendController@changeLang')->name('lang');
-
-
-
-
-
-
-
 
 
 Route::group(['prefix' => 'admin', 'middleware' => 'guest:admin', 'as' => 'admin.'], function () {

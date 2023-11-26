@@ -1,8 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
-
 use App\Deposit;
 use App\Transaction;
 use App\Withdraw;
@@ -18,9 +16,6 @@ use Illuminate\Support\Facades\Hash;
 
 class AdminDashboardController extends Controller
 {
-
-
-
     public function loginPage()
     {
         if (Auth::user()){
@@ -71,13 +66,11 @@ class AdminDashboardController extends Controller
 
     public function ChangePass()
     {
-
         return view('admin.profile.passwordChange');
     }
 
     public function ChangePassPost(Request $request)
     {
-
         $request->validate([
             'old_password' => 'required|string',
             'new_password' => 'required|string|min:5|confirmed',
@@ -94,12 +87,7 @@ class AdminDashboardController extends Controller
         return back()->withErrors('invalid password');
     }
 
-
-
-
     public function dashboard(){
-
-
         $verifiedUser = User::where('email_verified', 1)->where('sms_verified', 1)->count();
         $emailUnverified = User::where('email_verified', 0)->count();
         $mobileUnverified = User::where('sms_verified', 0)->count();
@@ -118,7 +106,7 @@ class AdminDashboardController extends Controller
         $witPending = Withdraw::where('status', 0)->count();
         $witApprove = Withdraw::where('status', 1)->count();
         $witReject = Withdraw::where('status', 2)->count();
-        
+
         $trOtBankTotal = Transaction::where('type', 7)->count();
         $trOtBankTotalAmount = Transaction::where('type', 7)->where('status', 1)->sum('amount');
 
@@ -135,7 +123,7 @@ class AdminDashboardController extends Controller
 
         return view('admin.index' ,compact('verifiedUser', 'bannedUser', 'emailUnverified',
             'mobileUnverified', 'total_chart', 'totalUser', 'totalDepAmount', 'totalUserBal' ,'witPending','witApprove','witReject',
-            'witTotal', 'witTotalAmount', 'witTotalCharge', 'dep', 'depCharge', 'totalNumDep', 
+            'witTotal', 'witTotalAmount', 'witTotalCharge', 'dep', 'depCharge', 'totalNumDep',
              'trOtBankTotalAmount', 'trOtBankTotal', 'trOtBankTotalCharge', 'trOtBankApprove', 'trOtBankReject', 'trOtBankPending'));
 
 
